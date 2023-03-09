@@ -79,7 +79,7 @@ def get_authenticated_service(args):
     credentials = run_flow(flow, storage, args)
 
   return build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION,
-    http=credentials.authorize(httplib2.Http()))
+    http=flow.authorization_url())
 
 def initialize_upload(youtube, options):
   tags = None
