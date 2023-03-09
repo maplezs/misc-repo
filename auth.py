@@ -69,7 +69,7 @@ VALID_PRIVACY_STATUSES = ("public", "private", "unlisted")
 
 
 def get_authenticated_service(args):
-  flow = InstalledAppFlow.from_client_config(CLIENT_CONFIG, SCOPES=YOUTUBE_UPLOAD_SCOPE,message=MISSING_CLIENT_SECRETS_MESSAGE)
+  flow = InstalledAppFlow.from_client_config(CLIENT_SECRETS_FILE, SCOPES=YOUTUBE_UPLOAD_SCOPE,message=MISSING_CLIENT_SECRETS_MESSAGE)
   credentials = flow.run_console()
 #  flow = flow_from_clientsecrets(CLIENT_SECRETS_FILE,
 #    scope=YOUTUBE_UPLOAD_SCOPE,
