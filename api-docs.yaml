@@ -27,7 +27,6 @@ paths:
       tags:
         - User Dashboard
       summary: Login akun yang telah terdaftar
-      description: 'role required: admin, engineer'
       requestBody:
         required: true
         content:
@@ -52,41 +51,6 @@ paths:
                     "token": "token-here"
                   }
                 }
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              examples:
-                clientNameIsTaken:
-                  value:
-                    {
-                      message: "Client name is already taken",
-                      success: false
-                    }
-                clientCodeIsTaken:
-                  value:
-                    {
-                      message: "Client code is already taken",
-                      success: false
-                    }
-                error:
-                  value:
-                    {
-                      message: "error.details[0].message",
-                      success: false
-                    }
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '500':
-          description: Server Error
-          content:
-            application/json:
-              example:
-                {
-                  message: "Unable to create client",
-                  success: false,
-                  error: "err.message"
-                }
   /dashboard/user/register:
     post:
       security:
@@ -94,7 +58,6 @@ paths:
       tags:
         - User Dashboard
       summary: Buat dan daftar akun baru
-      description: 'role required: admin, engineer'
       requestBody:
         required: true
         content:
@@ -122,27 +85,6 @@ paths:
                 }
         '400':
           description: Bad Request
-          content:
-            application/json:
-              examples:
-                emailExist:
-                  value:
-                    {
-                      message: "Email already exists",
-                      success: false
-                    }
-                clientCodeIsTaken:
-                  value:
-                    {
-                      message: "Client code is already taken",
-                      success: false
-                    }
-                error:
-                  value:
-                    {
-                      message: "error.details[0].message",
-                      success: false
-                    }
         '409':
           description: Conflict
           content:
