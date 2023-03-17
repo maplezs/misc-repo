@@ -1,0 +1,371 @@
+openapi: 3.0.3
+info:
+  title: Adaptive Network Lab API
+  description: |-
+    Dokumentasi lengkap mengenai semua API yang ada
+  version: 1.0.0
+servers:
+  - url: https://api.adaptivenetlab.site/v1
+tags:
+  - name: User Dashboard
+    description: Dashboard User (Login App)
+  - name: Kegiatan
+    description: To Do Next
+  - name: Prestasi
+    description: To Do Next
+  - name: Alumni
+    description: To Do Next
+  - name: Active Member
+    description: To Do Next
+  - name: Landing Page
+    description: To Do Next
+paths:
+  /dashboard/user/login:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - User Dashboard
+      summary: Login akun yang telah terdaftar
+      description: 'role required: admin, engineer'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/login'
+      responses:
+        '201':
+          description: created
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message":"Login berhasil",
+                  "data": {
+                    "userId": "1234",
+                    "name": "Ridwan Kamil",
+                    "username": "user1",
+                    "email": "ridwan@adaptivenetworklab.example",
+                    "roleId": "1",
+                    "token": "token-here"
+                  }
+                }
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              examples:
+                clientNameIsTaken:
+                  value:
+                    {
+                      message: "Client name is already taken",
+                      success: false
+                    }
+                clientCodeIsTaken:
+                  value:
+                    {
+                      message: "Client code is already taken",
+                      success: false
+                    }
+                error:
+                  value:
+                    {
+                      message: "error.details[0].message",
+                      success: false
+                    }
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              example:
+                {
+                  message: "Unable to create client",
+                  success: false,
+                  error: "err.message"
+                }
+  /dashboard/user/register:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - User Dashboard
+      summary: Buat dan daftar akun baru
+      description: 'role required: admin, engineer'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/register'
+      responses:
+        '201':
+          description: created
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message":"User berhasil ditambahkan",
+                  "data": {
+                    "userId": "1234",
+                    "name": "Ridwan Kamil",
+                    "username": "user1",
+                    "email": "ridwan@adaptivenetworklab.example",
+                    "roleId": "1",
+                    "createdAt": "userSaved.createdAt",
+                    "updatedAt": "userSaved.updatedAt"
+                  }
+                }
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              examples:
+                emailExist:
+                  value:
+                    {
+                      message: "Email already exists",
+                      success: false
+                    }
+                clientCodeIsTaken:
+                  value:
+                    {
+                      message: "Client code is already taken",
+                      success: false
+                    }
+                error:
+                  value:
+                    {
+                      message: "error.details[0].message",
+                      success: false
+                    }
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              examples:
+                emailExist:
+                  value:
+                    {
+                      message: "Email already exists"
+                    }
+                usernameExist:
+                  value:
+                    {
+                      message: "Username already exists"
+                    }
+  /dashboard/user:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - User Dashboard
+      summary: Daftar akun yang terdaftar
+      parameters:
+        - in: query
+          name: auth-token
+          required: true
+          schema:
+            type: string
+            minimum: 3
+            maximum: 100
+          description: Auth Token
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "Daftar user berhasil didapatkan",
+                  "data": {
+                    "_id": "639c5bc9d820b9229b121983",
+                    "name": "Telkom University",
+                    "code": "TEL",
+                    "regional": "Bandung",
+                    "address": "Jalan Telekomunikasi 1",
+                    "phone": 2342432434,
+                    "email": "support@telkomuniversity.ac.id",
+                    "createdAt": "2022-12-16T11:51:37.140Z",
+                    "updatedAt": "2022-12-16T11:51:37.140Z"
+                  }
+                }
+        '400':
+          $ref: '#/components/responses/Unauthorized'
+  /dashboard/user/{userId}:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - User Dashboard
+      summary: Melihat detail user berdasarkan ID
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: integer
+            format: int64
+          description: ID dari user
+        - in: query
+          name: auth-token
+          required: true
+          schema:
+            type: string
+            minimum: 3
+            maximum: 100
+          description: Auth Token
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "User berhasil didapatkan",
+                 
+                }
+        '404':
+          description: User not found
+    put:
+      security:
+        - bearerAuth: []
+      tags:
+        - User Dashboard
+      summary: Memperbarui detail user berdasarkan ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/register'
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: integer
+            format: int64
+          description: ID dari user
+        - in: query
+          name: auth-token
+          required: true
+          schema:
+            type: string
+            minimum: 3
+            maximum: 100
+          description: Auth Token
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "User berhasil diupdate",
+                }
+        '404':
+          description: User not found
+    delete:
+      security:
+        - bearerAuth: []
+      tags:
+        - User Dashboard
+      summary: Menghapus User berdasarkan ID
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: integer
+            format: int64
+          description: ID dari user
+        - in: query
+          name: auth-token
+          required: true
+          schema:
+            type: string
+            minimum: 3
+            maximum: 100
+          description: Auth Token
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "success": "success",
+                  "message": "User berhasil dihapus"
+                }   
+        '404':
+          description: User not found
+components:
+  responses:
+    Unauthorized:
+      description: not authorized to access the resource
+      content:
+        application/json:
+          examples:
+            Unauthorized:
+              value:
+                {
+                  "status": "Unauthorized",
+                  "message": "No Token, Access denied",
+                  "success": false
+                }
+            invalidToken:
+              value:
+                {
+                  "status": "Unauthorized",
+                  "message": "Invalid Token",
+                  "success": false
+                }
+            invalidRole:
+              value:
+                {
+                  "message": "You are not authorized to access this resource",
+                  "success": false
+                }
+  schemas:
+    login:
+      type: object
+      properties:
+        username:
+          type: string
+          example: annasiknvl
+        password:
+          type: string
+          example: 12345678
+    register:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Naoval Annasik
+        username:
+          type: string
+          example: annasiknvl
+        password:
+          type: string
+          example: 12345678
+        email:
+          type: string
+          example: adaptive@example.com
+        roleId:
+          type: string
+          example: 1
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWTs
+security:
+  - bearerAuth: []
