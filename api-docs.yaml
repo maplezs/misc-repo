@@ -44,11 +44,11 @@ paths:
                   "status": "success",
                   "message":"Login berhasil",
                   "data": {
-                    "userId": "1234",
-                    "name": "Ridwan Kamil",
-                    "username": "user1",
-                    "email": "ridwan@adaptivenetworklab.example",
-                    "roleId": "1",
+                    "userId": "1",
+                    "name": "Naoval Annasik",
+                    "username": "annasiknvl",
+                    "email": "annasiknvl@example.com",
+                    "roleId": 1,
                     "token": "token-here"
                   }
                 }
@@ -111,11 +111,11 @@ paths:
                   "status": "success",
                   "message":"User berhasil ditambahkan",
                   "data": {
-                    "userId": "1234",
-                    "name": "Ridwan Kamil",
-                    "username": "user1",
-                    "email": "ridwan@adaptivenetworklab.example",
-                    "roleId": "1",
+                    "userId": "1",
+                    "name": "Naoval Annasik",
+                    "username": "annasiknvl",
+                    "email": "annasiknvl@example.com",
+                    "roleId": 1,
                     "createdAt": "userSaved.createdAt",
                     "updatedAt": "userSaved.updatedAt"
                   }
@@ -184,15 +184,13 @@ paths:
                   "status": "success",
                   "message": "Daftar user berhasil didapatkan",
                   "data": {
-                    "_id": "639c5bc9d820b9229b121983",
-                    "name": "Telkom University",
-                    "code": "TEL",
-                    "regional": "Bandung",
-                    "address": "Jalan Telekomunikasi 1",
-                    "phone": 2342432434,
-                    "email": "support@telkomuniversity.ac.id",
-                    "createdAt": "2022-12-16T11:51:37.140Z",
-                    "updatedAt": "2022-12-16T11:51:37.140Z"
+                    "userId": "1",
+                    "name": "Naoval Annasik",
+                    "username": "annasiknvl",
+                    "email": "annasiknvl@example.com",
+                    "roleId": 1,
+                    "createdAt": "Date.now()",
+                    "updatedAt": "null"
                   }
                 }
         '400':
@@ -229,7 +227,15 @@ paths:
                 {
                   "status": "success",
                   "message": "User berhasil didapatkan",
-                 
+                  "data": {
+                    "userId": "1",
+                    "name": "Naoval Annasik",
+                    "username": "annasiknvl",
+                    "email": "annasiknvl@example.com",
+                    "roleId": 1,
+                    "createdAt": "Date.now()",
+                    "updatedAt": "null"
+                  }
                 }
         '404':
           description: User not found
@@ -358,7 +364,7 @@ components:
           example: 12345678
         email:
           type: string
-          example: adaptive@example.com
+          example: annasiknvl@example.com
         roleId:
           type: string
           example: 1
