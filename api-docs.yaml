@@ -117,14 +117,15 @@ paths:
                   "status": "success",
                   "message": "Daftar user berhasil didapatkan",
                   "data": {
-                    "_id": "641444768fc28ccb4f548c4b",
+                    "_id": "641449298fc28ccb4f548c5d",
                     "userId": "e8e59d4c-d929-4b7e-afe7-632efd8bec30",
                     "name": "Naoval Annasik",
                     "username": "annasiknvl",
+                    "password": "$2b$10$FpiVDEbcTci2kV9hcgaTwex./eyBDrUoOPtzSMjZU5I93qIutgJQ2",
                     "email": "annasiknvl@example.com",
                     "roleId": 1,
-                    "createdAt": "Date.now()",
-                    "updatedAt": "null"
+                    "createdAt": "2023-03-17T11:04:09.588Z",
+                    "updatedAt": null
                   }
                 }
         '400':
@@ -153,13 +154,15 @@ paths:
                   "status": "success",
                   "message": "User berhasil didapatkan",
                   "data": {
-                    "userId": "1",
+                    "_id": "641449298fc28ccb4f548c5d",
+                    "userId": "e8e59d4c-d929-4b7e-afe7-632efd8bec30",
                     "name": "Naoval Annasik",
                     "username": "annasiknvl",
+                    "password": "$2b$10$FpiVDEbcTci2kV9hcgaTwex./eyBDrUoOPtzSMjZU5I93qIutgJQ2",
                     "email": "annasiknvl@example.com",
                     "roleId": 1,
-                    "createdAt": "Date.now()",
-                    "updatedAt": "null"
+                    "createdAt": "2023-03-17T11:04:09.588Z",
+                    "updatedAt": null
                   }
                 }
         '404':
