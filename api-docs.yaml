@@ -100,28 +100,13 @@ paths:
                     {
                       message: "Username already exists"
                     }
-  /dashboard/user:
+  /dashboard/user/:
     get:
       security:
         - bearerAuth: []
       tags:
         - User Dashboard
       summary: Daftar akun yang terdaftar
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/login'
-      parameters:
-        - in: query
-          name: auth-token
-          required: true
-          schema:
-            type: string
-            minimum: 3
-            maximum: 100
-          description: Auth Token
       responses:
         '200':
           description: Success
@@ -132,7 +117,8 @@ paths:
                   "status": "success",
                   "message": "Daftar user berhasil didapatkan",
                   "data": {
-                    "userId": "1",
+                    "_id": "641444768fc28ccb4f548c4b",
+                    "userId": "e8e59d4c-d929-4b7e-afe7-632efd8bec30",
                     "name": "Naoval Annasik",
                     "username": "annasiknvl",
                     "email": "annasiknvl@example.com",
@@ -155,17 +141,8 @@ paths:
           name: userId
           required: true
           schema:
-            type: integer
-            format: int64
-          description: ID dari user
-        - in: query
-          name: auth-token
-          required: true
-          schema:
             type: string
-            minimum: 3
-            maximum: 100
-          description: Auth Token
+          description: ID dari user
       responses:
         '200':
           description: Success
@@ -207,14 +184,6 @@ paths:
             type: integer
             format: int64
           description: ID dari user
-        - in: query
-          name: auth-token
-          required: true
-          schema:
-            type: string
-            minimum: 3
-            maximum: 100
-          description: Auth Token
       responses:
         '200':
           description: Success
@@ -241,14 +210,6 @@ paths:
             type: integer
             format: int64
           description: ID dari user
-        - in: query
-          name: auth-token
-          required: true
-          schema:
-            type: string
-            minimum: 3
-            maximum: 100
-          description: Auth Token
       responses:
         '200':
           description: Success
@@ -318,8 +279,8 @@ components:
           example: 1
   securitySchemes:
     bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWTs
+      type: apiKey
+      name: auth-token
+      in: header
 security:
   - bearerAuth: []
