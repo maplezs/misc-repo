@@ -22,8 +22,6 @@ tags:
 paths:
   /dashboard/user/login:
     post:
-      security:
-        - bearerAuth: []
       tags:
         - User Dashboard
       summary: Login akun yang telah terdaftar
@@ -53,8 +51,6 @@ paths:
                 }
   /dashboard/user/register:
     post:
-      security:
-        - bearerAuth: []
       tags:
         - User Dashboard
       summary: Buat dan daftar akun baru
@@ -103,7 +99,7 @@ paths:
   /dashboard/user/:
     get:
       security:
-        - bearerAuth: []
+        - AuthToken: []
       tags:
         - User Dashboard
       summary: Daftar akun yang terdaftar
@@ -133,7 +129,7 @@ paths:
   /dashboard/user/{userId}:
     get:
       security:
-        - bearerAuth: []
+        - AuthToken: []
       tags:
         - User Dashboard
       summary: Melihat detail user berdasarkan ID
@@ -169,7 +165,7 @@ paths:
           description: User not found
     put:
       security:
-        - bearerAuth: []
+        - AuthToken: []
       tags:
         - User Dashboard
       summary: Memperbarui detail user berdasarkan ID
@@ -184,8 +180,7 @@ paths:
           name: userId
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
           description: ID dari user
       responses:
         '200':
@@ -201,7 +196,7 @@ paths:
           description: User not found
     delete:
       security:
-        - bearerAuth: []
+        - AuthToken: []
       tags:
         - User Dashboard
       summary: Menghapus User berdasarkan ID
@@ -210,8 +205,7 @@ paths:
           name: userId
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
           description: ID dari user
       responses:
         '200':
@@ -281,9 +275,9 @@ components:
           type: string
           example: 1
   securitySchemes:
-    bearerAuth:
+    AuthToken:
       type: apiKey
       name: auth-token
       in: header
 security:
-  - bearerAuth: []
+  - AuthToken: []
