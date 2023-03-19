@@ -3,23 +3,103 @@ info:
   title: Adaptive Network Lab API
   description: |-
     Dokumentasi lengkap mengenai semua API yang ada
-  version: 1.0.0
+  version: 1.0.1
 servers:
   - url: https://api.adaptivenetlab.site/v1
 tags:
   - name: User Dashboard
-    description: Dashboard User (Login App)
-  - name: Kegiatan
-    description: To Do Next
+    description: Dashboard User
+  - name: Landing Page
+    description: Landing Page Editor
   - name: Prestasi
     description: To Do Next
   - name: Alumni
     description: To Do Next
   - name: Active Member
     description: To Do Next
-  - name: Landing Page
+  - name: Kegiatan
     description: To Do Next
 paths:
+  /landing-page/tentang-kami:
+    post:
+      tags: 
+        - Landing Page
+      summary: Landing Page Tentang Kami
+    get:
+      tags: 
+        - Landing Page
+      summary: Landing Page Tentang Kami
+  /landing-page/tentang-kami-sejarah:
+    post:
+      tags: 
+        - Landing Page
+      summary: Landing Page Sejarah Lab
+    get:
+      tags: 
+        - Landing Page
+      summary: Landing Page Sejarah Lab
+  /landing-page/tentang-kami-sejarah/{uid}:
+    put:
+      tags: 
+        - Landing Page
+      summary: Perbarui Data Berdasarkan ID
+    delete:
+      tags: 
+        - Landing Page
+      summary: Hapus data berdasarkan ID
+  /landing-page/tentang-kami/{uid}:
+    put:
+      tags: 
+        - Landing Page
+      summary: Perbarui Data Berdasarkan ID
+    delete:
+      tags: 
+        - Landing Page
+      summary: Hapus data berdasarkan ID
+  /landing-page/struktur-organisasi:
+    post:
+      tags: 
+        - Landing Page
+      summary: Landing Page Struktur Organisasi
+    get:
+      tags: 
+        - Landing Page
+      summary: Landing Page Struktur Organisasi
+  /landing-page/struktur-organisasi/{uid}:
+    get:
+      tags: 
+        - Landing Page
+      summary: List data berdasarkan ID
+    put:
+      tags: 
+        - Landing Page
+      summary: Perbarui Data Berdasarkan ID
+    delete:
+      tags: 
+        - Landing Page
+      summary: Hapus data berdasarkan ID
+  /landing-page/sambutan-pembina:
+    post:
+      tags: 
+        - Landing Page
+      summary: Landing Page Sambutan Pembina
+    get:
+      tags: 
+        - Landing Page
+      summary: Landing Page Sambutan Pembina
+  /landing-page/sambutan-pembina/{id}:
+    get:
+      tags: 
+        - Landing Page
+      summary: List data berdasarkan ID
+    put:
+      tags: 
+        - Landing Page
+      summary: Perbarui Data Berdasarkan ID
+    delete:
+      tags: 
+        - Landing Page
+      summary: Hapus data berdasarkan ID
   /dashboard/user/login:
     post:
       tags:
