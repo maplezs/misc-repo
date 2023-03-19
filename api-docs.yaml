@@ -107,6 +107,12 @@ paths:
       tags:
         - User Dashboard
       summary: Daftar akun yang terdaftar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/login'
       parameters:
         - in: query
           name: auth-token
