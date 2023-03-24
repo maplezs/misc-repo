@@ -20,7 +20,7 @@ tags:
   - name: Kegiatan
     description: To Do Next
 paths:
-  /landing-page/tentang-kami:
+  /dashboard/landing-page-editor/tentang-kami:
     post:
       security:
         - AuthToken: []
@@ -43,12 +43,12 @@ paths:
                   "status": "success",
                   "message":"Tentang Kami berhasil ditambahkan",
                   "data": {
-                    "userId": "1",
-                    "name": "Naoval Annasik",
-                    "username": "annasiknvl",
-                    "email": "annasiknvl@example.com",
-                    "roleId": 1,
-                    "token": "token-here"
+                    "uid": "6a99ef60-8282-40f5-9294-2f3dc3c9e979",
+                    "judul": "Tentang Kami",
+                    "isi": "Lorem Ipsum Dolor",
+                    "updateAt": null,
+                    "_id": "641e1e8528c5e43a7df6e728",
+                    "createdAt": "2023-03-24T22:04:53.917Z"
                   }
                 }
         '500':
@@ -69,22 +69,24 @@ paths:
                   "status": "success",
                   "message": "Tentang Kami berhasil ditampilkan",
                   "data": {
-                    "uid": "641449298fc28ccb4f548c5d",
-                    "judul": "e8e59d4c-d929-4b7e-afe7-632efd8bec30",
-                    "isi": "Naoval Annasik",
-                    "createdAt": "2023-03-17T11:04:09.588Z",
-                    "updatedAt": null
+                    "uid": "6a99ef60-8282-40f5-9294-2f3dc3c9e979",
+                    "judul": "Tentang Kami",
+                    "isi": "Lorem Ipsum Dolor",
+                    "updateAt": null,
+                    "createdAt": "2023-03-24T22:11:41.147Z"
                   }
                 }
         '400':
           $ref: '#/components/responses/Unauthorized'
         '500':
           description: test123
-  /landing-page/tentang-kami/{uid}:
+  /dashboard/landing-page-editor/tentang-kami/{uid}:
     put:
       tags: 
         - Landing Page
       summary: Perbarui Data Berdasarkan ID
+      security:
+        - AuthToken: []
       requestBody:
         required: true
         content:
@@ -97,7 +99,7 @@ paths:
           required: true
           schema:
             type: string
-          description: ID dari user
+          description: UID
       responses:
         '200':
           description: Success
@@ -110,6 +112,13 @@ paths:
                 }
         '404':
           description: User not found
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "Tentang Kami tidak ditemukan"
+                }
     delete:
       tags: 
         - Landing Page
@@ -122,7 +131,7 @@ paths:
           required: true
           schema:
             type: string
-          description: ID dari user
+          description: UID
       responses:
         '200':
           description: Success
@@ -134,25 +143,170 @@ paths:
                   "message": "Tentang Kami berhasil dihapus"
                 }   
         '404':
-          description: User not found
-  /landing-page/tentang-kami-sejarah:
+          description: UID not found
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "Tentang Kami tidak ditemukan"
+                }
+  /dashboard/landing-page-editor/tentang-kami-sejarah:
     post:
       tags: 
         - Landing Page
       summary: Landing Page Sejarah Lab
+      security:
+        - AuthToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/tentangkamisejarah'
+          image/png:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "Tentang Kami berhasil ditampilkan",
+                  "data": {
+                    "uid": "6a99ef60-8282-40f5-9294-2f3dc3c9e979",
+                    "judul": "Tentang Kami",
+                    "isi": "Lorem Ipsum Dolor",
+                    "updateAt": null,
+                    "createdAt": "2023-03-24T22:11:41.147Z"
+                  }
+                }
+        '400':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          description: test123
     get:
       tags: 
         - Landing Page
       summary: Landing Page Sejarah Lab
-  /landing-page/tentang-kami-sejarah/{uid}:
+      security:
+        - AuthToken: []
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "Tentang Kami Sejarah berhasil ditampilkan",
+                  "data": {
+                    "uid": "641449298fc28ccb4f548c5d",
+                    "judul": "e8e59d4c-d929-4b7e-afe7-632efd8bec30",
+                    "isi": "Naoval Annasik",
+                    "tahun": "2020",
+                    "imageUrl": "url//",
+                    "createdAt": "2023-03-17T11:04:09.588Z",
+                    "updatedAt": null
+                  }
+                }
+        '400':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          description: test123
+  /dashboard/landing-page-editor/tentang-kami-sejarah/{uid}:
     put:
       tags: 
         - Landing Page
       summary: Perbarui Data Berdasarkan ID
+      security:
+        - AuthToken: []
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          schema:
+            type: string
+          description: UID dari user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/tentangkamisejarah'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "success": "success",
+                  "message": "Tentang Kami Sejarah berhasil diubah"
+                }   
+        '404':
+          description: UID Not Found
+          content:
+            application/json:
+              example:
+                {
+                  "success": "error",
+                  "message": "Uid tidak ditemukan"
+                }
+        '500':
+          description: error
+          content:
+            application/json:
+              example:
+                {
+                  "success": "error",
+                  "message": "Uid tidak ditemukan"
+                }
     delete:
       tags: 
         - Landing Page
       summary: Hapus data berdasarkan ID
+      security:
+        - AuthToken: []
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          schema:
+            type: string
+          description: UID dari user
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "success": "success",
+                  "message": "Tentang Kami Sejarah berhasil dihapus"
+                }   
+        '404':
+          description: UID Not Found
+          content:
+            application/json:
+              example:
+                {
+                  "success": "error",
+                  "message": "Tentang Kami Sejarah tidak ditemukan"
+                }
+        '500':
+          description: error
+          content:
+            application/json:
+              example:
+                {
+                  "success": "error",
+                  "message": "error message"
+                }
   /landing-page/struktur-organisasi:
     post:
       tags: 
@@ -456,11 +610,25 @@ components:
       properties:
         judul:
           type: string
-          example: 123
+          example: Tentang Kami
         isi:
           type: string
-          example: 123
-      
+          example: Lorem Ipsum Dolor
+    tentangkamisejarah:
+      type: object
+      properties:
+        judul:
+          type: string
+          example: lorem ipsum dolor sit amet
+        isi:
+          type: string
+          example: lorem ipsum
+        tahun:
+          type: string
+          example: 2020
+        imageUrl:
+          type: string
+          format: binary
   securitySchemes:
     AuthToken:
       type: apiKey
