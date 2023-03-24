@@ -22,13 +22,119 @@ tags:
 paths:
   /landing-page/tentang-kami:
     post:
+      security:
+        - AuthToken: []
       tags: 
         - Landing Page
       summary: Landing Page Tentang Kami
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/tentangkami'
+      responses:
+        '201':
+          description: created
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message":"Tentang Kami berhasil ditambahkan",
+                  "data": {
+                    "userId": "1",
+                    "name": "Naoval Annasik",
+                    "username": "annasiknvl",
+                    "email": "annasiknvl@example.com",
+                    "roleId": 1,
+                    "token": "token-here"
+                  }
+                }
+        '500':
+          description: error
     get:
+      security:
+        - AuthToken: []
       tags: 
         - Landing Page
       summary: Landing Page Tentang Kami
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "Tentang Kami berhasil ditampilkan",
+                  "data": {
+                    "uid": "641449298fc28ccb4f548c5d",
+                    "judul": "e8e59d4c-d929-4b7e-afe7-632efd8bec30",
+                    "isi": "Naoval Annasik",
+                    "createdAt": "2023-03-17T11:04:09.588Z",
+                    "updatedAt": null
+                  }
+                }
+        '400':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          description: test123
+  /landing-page/tentang-kami/{uid}:
+    put:
+      tags: 
+        - Landing Page
+      summary: Perbarui Data Berdasarkan ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/tentangkami'
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          schema:
+            type: string
+          description: ID dari user
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "Tentang Kami berhasil diubah",
+                }
+        '404':
+          description: User not found
+    delete:
+      tags: 
+        - Landing Page
+      summary: Hapus data berdasarkan ID
+      security:
+        - AuthToken: []
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          schema:
+            type: string
+          description: ID dari user
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "success": "success",
+                  "message": "Tentang Kami berhasil dihapus"
+                }   
+        '404':
+          description: User not found
   /landing-page/tentang-kami-sejarah:
     post:
       tags: 
@@ -39,15 +145,6 @@ paths:
         - Landing Page
       summary: Landing Page Sejarah Lab
   /landing-page/tentang-kami-sejarah/{uid}:
-    put:
-      tags: 
-        - Landing Page
-      summary: Perbarui Data Berdasarkan ID
-    delete:
-      tags: 
-        - Landing Page
-      summary: Hapus data berdasarkan ID
-  /landing-page/tentang-kami/{uid}:
     put:
       tags: 
         - Landing Page
@@ -354,6 +451,16 @@ components:
         roleId:
           type: string
           example: 1
+    tentangkami:
+      type: object
+      properties:
+        judul:
+          type: string
+          example: 123
+        isi:
+          type: string
+          example: 123
+      
   securitySchemes:
     AuthToken:
       type: apiKey
