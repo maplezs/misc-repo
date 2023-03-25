@@ -11,15 +11,90 @@ tags:
     description: Dashboard User
   - name: Landing Page
     description: Landing Page Editor
+  - name: Active Member
+    description: Active Member Page
   - name: Prestasi
     description: To Do Next
   - name: Alumni
     description: To Do Next
-  - name: Active Member
-    description: To Do Next
   - name: Kegiatan
     description: To Do Next
 paths:
+  /dashboard/active-member/:
+    post:
+      security:
+        - AuthToken: []
+      tags: 
+        - Active Member
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/activemember'
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "Tentang Kami berhasil ditambahkan",
+                  "data": {
+                    "uid": "6a99ef60-8282-40f5-9294-2f3dc3c9e979",
+                    "judul": "Tentang Kami",
+                    "isi": "Lorem Ipsum Dolor",
+                    "updateAt": null,
+                    "createdAt": "2023-03-24T22:11:41.147Z"
+                  }
+                }
+        '400':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          description: test123
+    get:
+      security:
+        - AuthToken: []
+      tags: 
+        - Active Member
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "Tentang Kami berhasil ditampilkan",
+                  "data": {
+                    "uid": "6a99ef60-8282-40f5-9294-2f3dc3c9e979",
+                    "judul": "Tentang Kami",
+                    "isi": "Lorem Ipsum Dolor",
+                    "updateAt": null,
+                    "createdAt": "2023-03-24T22:11:41.147Z"
+                  }
+                }
+        '400':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          description: test123
+  /dashboard/active-member/{uid}:
+    get:
+      security:
+        - AuthToken: []
+      tags: 
+        - Active Member
+    put:
+      security:
+        - AuthToken: []
+      tags: 
+        - Active Member
+    delete:
+      security:
+        - AuthToken: []
+      tags: 
+        - Active Member
   /dashboard/landing-page-editor/tentang-kami:
     post:
       security:
@@ -161,13 +236,9 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
+          multipart/form-data:
             schema:
               $ref: '#/components/schemas/tentangkamisejarah'
-          image/png:
-            schema:
-              type: string
-              format: binary
       responses:
         '200':
           description: Success
@@ -307,20 +378,124 @@ paths:
                   "success": "error",
                   "message": "error message"
                 }
-  /landing-page/struktur-organisasi:
+  /dashboard/landing-page-editor/struktur-organisasi:
     post:
       tags: 
         - Landing Page
       summary: Landing Page Struktur Organisasi
+      security:
+        - AuthToken: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/tentangkamisejarah'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "Tentang Kami berhasil ditampilkan",
+                  "data": {
+                    "uid": "6a99ef60-8282-40f5-9294-2f3dc3c9e979",
+                    "judul": "Tentang Kami",
+                    "isi": "Lorem Ipsum Dolor",
+                    "updateAt": null,
+                    "createdAt": "2023-03-24T22:11:41.147Z"
+                  }
+                }
+        '400':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          description: test123
     get:
       tags: 
         - Landing Page
       summary: Landing Page Struktur Organisasi
-  /landing-page/struktur-organisasi/{uid}:
+      security:
+        - AuthToken: []
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "Tentang Kami Sejarah berhasil ditampilkan",
+                  "data": {
+                    "uid": "641449298fc28ccb4f548c5d",
+                    "judul": "e8e59d4c-d929-4b7e-afe7-632efd8bec30",
+                    "isi": "Naoval Annasik",
+                    "tahun": "2020",
+                    "imageUrl": "url//",
+                    "createdAt": "2023-03-17T11:04:09.588Z",
+                    "updatedAt": null
+                  }
+                }
+        '400':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: No Data Found
+          content:
+            application/json:
+              example:
+                {
+                  "success": "error",
+                  "message": "Tidak ada Struktur Organisasi yang tersedia"
+                }
+        '500':
+          description: test123
+  /dashboard/landing-page-editor/struktur-organisasi/{uid}:
     get:
       tags: 
         - Landing Page
       summary: List data berdasarkan ID
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          schema:
+            type: string
+          description: UID dari data
+      security:
+        - AuthToken: []
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "Tentang Kami Sejarah berhasil ditampilkan",
+                  "data": {
+                    "uid": "641449298fc28ccb4f548c5d",
+                    "judul": "e8e59d4c-d929-4b7e-afe7-632efd8bec30",
+                    "isi": "Naoval Annasik",
+                    "tahun": "2020",
+                    "imageUrl": "url//",
+                    "createdAt": "2023-03-17T11:04:09.588Z",
+                    "updatedAt": null
+                  }
+                }
+        '400':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: No Data Found
+          content:
+            application/json:
+              example:
+                {
+                  "success": "error",
+                  "message": "Tidak ada Struktur Organisasi yang tersedia"
+                }
+        '500':
+          description: test123
     put:
       tags: 
         - Landing Page
@@ -329,7 +504,7 @@ paths:
       tags: 
         - Landing Page
       summary: Hapus data berdasarkan ID
-  /landing-page/sambutan-pembina:
+  /dashboard/landing-page-editor/sambutan-pembina:
     post:
       tags: 
         - Landing Page
@@ -338,19 +513,110 @@ paths:
       tags: 
         - Landing Page
       summary: Landing Page Sambutan Pembina
-  /landing-page/sambutan-pembina/{id}:
+      security:
+        - AuthToken: []
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "Sambutan Pembina berhasil ditampilkan",
+                  "data": {
+                    "uid": "641449298fc28ccb4f548c5d",
+                    "judul": "e8e59d4c-d929-4b7e-afe7-632efd8bec30",
+                    "isi": "Naoval Annasik",
+                    "tahun": "2020",
+                    "imageUrl": "url//",
+                    "createdAt": "2023-03-17T11:04:09.588Z",
+                    "updatedAt": null
+                  }
+                }
+        '400':
+          description: Invalid token
+        '404':
+          description: No Data Found
+          content:
+            application/json:
+              example:
+                {
+                  "success": "error",
+                  "message": "Tidak ada Struktur Organisasi yang tersedia"
+                }
+  /dashboard/landing-page-editor/sambutan-pembina/{id}:
     get:
       tags: 
         - Landing Page
       summary: List data berdasarkan ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: UID dari data
+      security:
+        - AuthToken: []
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "Sambutan Pembina berhasil ditampilkan",
+                  "data": {
+                    "uid": "641449298fc28ccb4f548c5d",
+                    "judul": "e8e59d4c-d929-4b7e-afe7-632efd8bec30",
+                    "isi": "Naoval Annasik",
+                    "tahun": "2020",
+                    "imageUrl": "url//",
+                    "createdAt": "2023-03-17T11:04:09.588Z",
+                    "updatedAt": null
+                  }
+                }
+        '400':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: No Data Found
+          content:
+            application/json:
+              example:
+                {
+                  "success": "error",
+                  "message": "Sambutan Pembina tidak ditemukan"
+                }
+        '500':
+          description: test123
     put:
       tags: 
         - Landing Page
       summary: Perbarui Data Berdasarkan ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: UID dari data
+      security:
+        - AuthToken: []
     delete:
       tags: 
         - Landing Page
       summary: Hapus data berdasarkan ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: UID dari data
+      security:
+        - AuthToken: []
   /dashboard/user/login:
     post:
       tags:
@@ -629,10 +895,26 @@ components:
         imageUrl:
           type: string
           format: binary
+    activemember:
+      type: object
+      properties:
+        nama:
+          type: string
+          example: Naoval Annasik
+        jabatan:
+          type: string
+          example: Anggota
+        divisi:
+          type: string
+          example: Riset
+        tahunAngkatan:
+          type: string
+          example: 2020
+        imageUrl:
+          type: string
+          format: binary
   securitySchemes:
     AuthToken:
       type: apiKey
       name: auth-token
       in: header
-security:
-  - AuthToken: []
