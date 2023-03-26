@@ -575,6 +575,35 @@ paths:
       tags: 
         - Landing Page
       summary: Landing Page Sambutan Pembina
+      security:
+        - AuthToken: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/sambutanpembina'
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "Sambutan Pembina berhasil ditambahkan",
+                  "data": {
+                    "judul": "Sambutan Pembina",
+                    "isi": "Lorem Ipsum",
+                    "namaPembina": "Ridha Muldina Negara",
+                    "imageUrl": "s3.adaptivenetworklab.org/website/Pembina-Lab-Upload-At-2023-03-26.jpg",
+                    "createdAt": "2023-03-26T07:19:06.825Z",
+                    "_id": 0
+                  },
+                  "updateAt": null
+                }
+        '400':
+          description: Invalid Token
     get:
       tags: 
         - Landing Page
@@ -590,15 +619,24 @@ paths:
                 {
                   "status": "success",
                   "message": "Sambutan Pembina berhasil ditampilkan",
-                  "data": {
-                    "uid": "641449298fc28ccb4f548c5d",
-                    "judul": "e8e59d4c-d929-4b7e-afe7-632efd8bec30",
-                    "isi": "Naoval Annasik",
-                    "tahun": "2020",
-                    "imageUrl": "url//",
-                    "createdAt": "2023-03-17T11:04:09.588Z",
-                    "updatedAt": null
-                  }
+                  "data": [
+                    {
+                      "_id": 0,
+                      "judul": "Sambutan Pembina",
+                      "isi": "Lorem Ipsum",
+                      "namaPembina": "Ridha Muldina Negara",
+                      "imageUrl": "s3.adaptivenetworklab.org/website/Pembina-Lab-Upload-At-2023-03-26.jpg",
+                      "createdAt": "2023-03-26T07:09:34.309Z"
+                    },
+                    {
+                      "_id": 1,
+                      "judul": "Sambutan Pembina",
+                      "isi": "Lorem Ipsum",
+                      "namaPembina": "Ridha Muldina Negara",
+                      "imageUrl": "s3.adaptivenetworklab.org/website/Pembina-Lab-Upload-At-2023-03-26.jpg",
+                      "createdAt": "2023-03-26T07:19:06.825Z"
+                    }
+                  ]
                 }
         '400':
           description: Invalid token
@@ -635,17 +673,16 @@ paths:
                   "status": "success",
                   "message": "Sambutan Pembina berhasil ditampilkan",
                   "data": {
-                    "uid": "641449298fc28ccb4f548c5d",
-                    "judul": "e8e59d4c-d929-4b7e-afe7-632efd8bec30",
-                    "isi": "Naoval Annasik",
-                    "tahun": "2020",
-                    "imageUrl": "url//",
-                    "createdAt": "2023-03-17T11:04:09.588Z",
-                    "updatedAt": null
+                    "_id": 0,
+                    "judul": "Sambutan Pembina",
+                    "isi": "Lorem Ipsum",
+                    "namaPembina": "Ridha Muldina Negara",
+                    "imageUrl": "s3.adaptivenetworklab.org/website/Pembina-Lab-Upload-At-2023-03-26.jpg",
+                    "createdAt": "2023-03-26T07:09:34.309Z"
                   }
                 }
         '400':
-          $ref: '#/components/responses/Unauthorized'
+          description: Invalid token
         '404':
           description: No Data Found
           content:
@@ -655,8 +692,6 @@ paths:
                   "success": "error",
                   "message": "Sambutan Pembina tidak ditemukan"
                 }
-        '500':
-          description: test123
     put:
       tags: 
         - Landing Page
@@ -667,9 +702,54 @@ paths:
           required: true
           schema:
             type: string
-          description: UID dari data
+          description: ID dari data
       security:
         - AuthToken: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/sambutanpembina'
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "success": "success",
+                  "message": "Sambutan Pembina berhasil diupdate",
+                  "data": {
+                    "_id": 0,
+                    "judul": "Sambutan Pembina Edit",
+                    "isi": "Lorem Ipsum Dolor",
+                    "namaPembina": "Ridha Muldina Negara",
+                    "imageUrl": "s3.adaptivenetworklab.org/website/Pembina-Lab-Upload-At-2023-03-26.jpg",
+                    "createdAt": "2023-03-26T07:09:34.309Z"
+                  },
+                  "updateAt": "2023-03-26T07:23:07.127Z"
+                }
+        '404':
+          description: ID Not Found
+          content:
+            application/json:
+              example:
+                {
+                  "success": "error",
+                  "message": "Sambutan Pembina tidak ditemukan"
+                }
+        '400':
+          description: Invalid Token
+        '500':
+          description: Error
+          content:
+            application/json:
+              example:
+                {
+                  "success": "error",
+                  "message": {}
+                }
     delete:
       tags: 
         - Landing Page
@@ -680,9 +760,30 @@ paths:
           required: true
           schema:
             type: string
-          description: UID dari data
+          description: ID dari data
       security:
         - AuthToken: []
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "success": "success",
+                  "message": "Sambutan Pembina berhasil dihapus"
+                }   
+        '404':
+          description: ID Not Found
+          content:
+            application/json:
+              example:
+                {
+                  "success": "error",
+                  "message": "Sambutan Pembina tidak ditemukan"
+                }
+        '400':
+          description: Invalid Token
   /dashboard/user/login:
     post:
       tags:
@@ -970,6 +1071,21 @@ components:
         imageUrl:
           type: string
           format: binary
+    sambutanpembina:
+        type: object
+        properties:
+          judul:
+            type: string
+            example: Sambutan Pembina
+          isi:
+            type: string
+            example: Lorem Ipsum
+          namaPembina:
+            type: string
+            example: Ridha Muldina Negara
+          imageUrl:
+            type: string
+            format: binary
     activemember:
       type: object
       properties:
