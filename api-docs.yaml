@@ -247,19 +247,19 @@ paths:
               example:
                 {
                   "status": "success",
-                  "message": "Tentang Kami berhasil ditampilkan",
+                  "message": "Tentang Kami Sejarah berhasil ditambahkan",
                   "data": {
-                    "uid": "6a99ef60-8282-40f5-9294-2f3dc3c9e979",
-                    "judul": "Tentang Kami",
-                    "isi": "Lorem Ipsum Dolor",
-                    "updateAt": null,
+                    "uid": "6607cd11c-b437-49f3-a735-9c9248cb047b",
+                    "judul": "Adaptive Network Lab",
+                    "isi": "Adaptive Network Lab",
+                    "imageUrl": "s3.adaptivenetworklab.org/website/$Tentang-Kami-2020.Upload-At-2023-03-26.jpg",
+                    "_id": "641fe629e23964b1f90ce5ca",
                     "createdAt": "2023-03-24T22:11:41.147Z"
-                  }
+                  },
+                  "updateAt": null
                 }
         '400':
-          $ref: '#/components/responses/Unauthorized'
-        '500':
-          description: test123
+          description: Invalid Token
     get:
       tags: 
         - Landing Page
@@ -276,19 +276,16 @@ paths:
                   "status": "success",
                   "message": "Tentang Kami Sejarah berhasil ditampilkan",
                   "data": {
-                    "uid": "641449298fc28ccb4f548c5d",
-                    "judul": "e8e59d4c-d929-4b7e-afe7-632efd8bec30",
-                    "isi": "Naoval Annasik",
+                    "uid": "6607cd11c-b437-49f3-a735-9c9248cb047b",
+                    "judul": "Adaptive Network Lab",
+                    "isi": "Adaptive Network Lab",
                     "tahun": "2020",
-                    "imageUrl": "url//",
-                    "createdAt": "2023-03-17T11:04:09.588Z",
-                    "updatedAt": null
+                    "imageUrl": "s3.adaptivenetworklab.org/website/$Tentang-Kami-2018.Upload-At-2023-03-25.png",
+                    "createdAt": "2023-03-17T11:04:09.588Z"
                   }
                 }
         '400':
-          $ref: '#/components/responses/Unauthorized'
-        '500':
-          description: test123
+          description: Invalid Token
   /dashboard/landing-page-editor/tentang-kami-sejarah/{uid}:
     put:
       tags: 
@@ -306,7 +303,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
+          multipart/form-data:
             schema:
               $ref: '#/components/schemas/tentangkamisejarah'
       responses:
@@ -328,14 +325,16 @@ paths:
                   "success": "error",
                   "message": "Uid tidak ditemukan"
                 }
+        '400':
+          description: Invalid Token
         '500':
-          description: error
+          description: Error
           content:
             application/json:
               example:
                 {
                   "success": "error",
-                  "message": "Uid tidak ditemukan"
+                  "message": {}
                 }
     delete:
       tags: 
@@ -369,15 +368,6 @@ paths:
                   "success": "error",
                   "message": "Tentang Kami Sejarah tidak ditemukan"
                 }
-        '500':
-          description: error
-          content:
-            application/json:
-              example:
-                {
-                  "success": "error",
-                  "message": "error message"
-                }
   /dashboard/landing-page-editor/struktur-organisasi:
     post:
       tags: 
@@ -390,7 +380,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/tentangkamisejarah'
+              $ref: '#/components/schemas/strukturorganisasi'
       responses:
         '200':
           description: Success
@@ -399,19 +389,18 @@ paths:
               example:
                 {
                   "status": "success",
-                  "message": "Tentang Kami berhasil ditampilkan",
+                  "message": "Struktur Organisasi berhasil ditambahkan",
                   "data": {
-                    "uid": "6a99ef60-8282-40f5-9294-2f3dc3c9e979",
-                    "judul": "Tentang Kami",
-                    "isi": "Lorem Ipsum Dolor",
+                    "uid": "e676ba69-9e50-4545-a71e-c63ec856bb86",
+                    "judul": "Adaptive Network Lab",
+                    "imageUrl": "s3.adaptivenetworklab.org/website/Struktur-Organisasi-Upload-At-2023-03-26.jpg",
                     "updateAt": null,
-                    "createdAt": "2023-03-24T22:11:41.147Z"
+                    "_id": "641feaf1e23964b1f90ce5d7",
+                    "createdAt": "2023-03-26T06:49:21.706Z"
                   }
                 }
         '400':
-          $ref: '#/components/responses/Unauthorized'
-        '500':
-          description: test123
+          description: Invalid Token
     get:
       tags: 
         - Landing Page
@@ -426,19 +415,27 @@ paths:
               example:
                 {
                   "status": "success",
-                  "message": "Tentang Kami Sejarah berhasil ditampilkan",
-                  "data": {
-                    "uid": "641449298fc28ccb4f548c5d",
-                    "judul": "e8e59d4c-d929-4b7e-afe7-632efd8bec30",
-                    "isi": "Naoval Annasik",
-                    "tahun": "2020",
-                    "imageUrl": "url//",
-                    "createdAt": "2023-03-17T11:04:09.588Z",
-                    "updatedAt": null
-                  }
+                  "message": "Struktur Organisasi berhasil didapatkan",
+                  "data": [
+                    {
+                      "uid": "e676ba69-9e50-4545-a71e-c63ec856bb86",
+                      "judul": "Noval Annasik",
+                      "imageUrl": "s3.adaptivenetworklab.org/website/Struktur-Organisasi-Upload-At-2023-03-25.png",
+                      "updateAt": null,
+                      "createdAt": "2023-03-25T22:11:01.015Z"
+                    },
+                    {
+                      "uid": "e676ba69-9e50-4545-a71e-c63ec856bb86",
+                      "judul": "Adaptive Network Lab",
+                      "imageUrl": "s3.adaptivenetworklab.org/website/Struktur-Organisasi-Upload-At-2023-03-26.jpg",
+                      "updateAt": null,
+                      "createdAt": "2023-03-26T06:49:21.706Z"
+                    }
+                  ],
+                  "updateAt": null
                 }
         '400':
-          $ref: '#/components/responses/Unauthorized'
+          description: Invalid Token
         '404':
           description: No Data Found
           content:
@@ -448,8 +445,6 @@ paths:
                   "success": "error",
                   "message": "Tidak ada Struktur Organisasi yang tersedia"
                 }
-        '500':
-          description: test123
   /dashboard/landing-page-editor/struktur-organisasi/{uid}:
     get:
       tags: 
@@ -472,19 +467,18 @@ paths:
               example:
                 {
                   "status": "success",
-                  "message": "Tentang Kami Sejarah berhasil ditampilkan",
+                  "message": "Struktur Organisasi berhasil didapatkan",
                   "data": {
-                    "uid": "641449298fc28ccb4f548c5d",
-                    "judul": "e8e59d4c-d929-4b7e-afe7-632efd8bec30",
-                    "isi": "Naoval Annasik",
-                    "tahun": "2020",
-                    "imageUrl": "url//",
-                    "createdAt": "2023-03-17T11:04:09.588Z",
-                    "updatedAt": null
-                  }
+                    "uid": "e676ba69-9e50-4545-a71e-c63ec856bb86",
+                    "judul": "Noval Annasik",
+                    "imageUrl": "s3.adaptivenetworklab.org/website/Struktur-Organisasi-Upload-At-2023-03-25.png",
+                    "updateAt": null,
+                    "createdAt": "2023-03-25T22:11:01.015Z"
+                  },
+                  "updateAt": null
                 }
         '400':
-          $ref: '#/components/responses/Unauthorized'
+          description: Invalid Token
         '404':
           description: No Data Found
           content:
@@ -494,16 +488,88 @@ paths:
                   "success": "error",
                   "message": "Tidak ada Struktur Organisasi yang tersedia"
                 }
-        '500':
-          description: test123
     put:
       tags: 
         - Landing Page
       summary: Perbarui Data Berdasarkan ID
+      security:
+        - AuthToken: []
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          schema:
+            type: string
+          description: UID dari data
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/strukturorganisasi'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "success": "success",
+                  "message": "Struktur Organisasi berhasil diupdate",
+                  "data": {
+                    "acknowledged": true,
+                    "modifiedCount": 1,
+                    "upsertedId": null,
+                    "upsertedCount": 0,
+                    "matchedCount": 1
+                  },
+                  "updateAt": "2023-03-26T07:00:58.805Z"
+                }   
+        '404':
+          description: UID Not Found
+          content:
+            application/json:
+              example:
+                {
+                  "success": "error",
+                  "message": "Struktur Organisasi tidak ditemukan"
+                }
+        '400':
+          description: Invalid Token
     delete:
       tags: 
         - Landing Page
       summary: Hapus data berdasarkan ID
+      security:
+        - AuthToken: []
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          schema:
+            type: string
+          description: UID dari data
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "success": "success",
+                  "message": "Struktur Organisasi berhasil dihapus"
+                }   
+        '404':
+          description: UID Not Found
+          content:
+            application/json:
+              example:
+                {
+                  "success": "error",
+                  "message": "Struktur Organisasi tidak ditemukan"
+                }
+        '400':
+          description: Invalid Token
   /dashboard/landing-page-editor/sambutan-pembina:
     post:
       tags: 
@@ -880,6 +946,15 @@ components:
         isi:
           type: string
           example: Lorem Ipsum Dolor
+    strukturorganisasi:
+      type: object
+      properties:
+        judul:
+          type: string
+          example: Adaptive Network Lab
+        imageUrl:
+          type: string
+          format: binary
     tentangkamisejarah:
       type: object
       properties:
