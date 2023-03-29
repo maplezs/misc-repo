@@ -13,13 +13,156 @@ tags:
     description: Landing Page Editor
   - name: Active Member
     description: Active Member Page 
-  - name: Prestasi
-    description: To Do Next
   - name: Alumni
+    description: Alumni Page
+  - name: Prestasi
     description: To Do Next
   - name: Kegiatan
     description: To Do Next
 paths:
+  /dashboard/alumni/:
+    post:
+      security:
+        - AuthToken: []
+      tags: 
+        - Alumni
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/alumni'
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "Tentang Kami berhasil ditambahkan",
+                  "data": {
+                    "uid": "3cebde8f-9a07-4408-b8b7-8d4315d3bda9",
+                    "nama": "Naoval Annasik",
+                    "jabatan": "Anggota",
+                    "divisi": "Riset",
+                    "tahunAngkatan": "2020",
+                    "imageUrl": "s3.adaptivenetworklab.org/website/Active-Member-Anggota.Naoval Annasik.Upload-At-2023-03-29.jpg",
+                    "updateAt": null,
+                    "_id": "6424689f7a45fb8c4031acc3",
+                    "createdAt": "2023-03-29T16:34:39.298Z"
+                  }
+                }
+        '400':
+          description: Invalid Token
+    get:
+      security:
+        - AuthToken: []
+      tags: 
+        - Alumni
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "Tentang Kami berhasil ditampilkan",
+                  "data": [
+                  {
+                    "uid": "6209896e-5309-464d-82ed-56bd37661fb7",
+                    "nama": "Naoval Annasik",
+                    "jabatan": "Anggota",
+                    "divisi": "Alumni",
+                    "tahunAngkatan": "2020",
+                    "imageUrl": "s3.adaptivenetworklab.org/website/Active-Member-Anggota.Naoval Annasik.Upload-At-2023-03-29.jpg",
+                    "updateAt": null,
+                    "createdAt": "2023-03-29T08:26:42.191Z"
+                  },
+                  {
+                    "uid": "3cebde8f-9a07-4408-b8b7-8d4315d3bda9",
+                    "nama": "Gilang Virga Perdana",
+                    "jabatan": "Kepala Divisi",
+                    "divisi": "Riset",
+                    "tahunAngkatan": "2020",
+                    "imageUrl": "s3.adaptivenetworklab.org/website/Active-Member-Anggota.Gilang Virga Perdana.Upload-At-2023-03-29.jpg",
+                    "updateAt": null,
+                    "createdAt": "2023-03-29T16:34:39.298Z"
+                  }
+                ]
+                }
+        '400':
+          description: Invalid Token
+  /dashboard/alumni/{uid}:
+    put:
+      security:
+        - AuthToken: []
+      tags: 
+        - Alumni
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          schema:
+            type: string
+          description: UID
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/alumni'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "Tentang Kami berhasil diubah"
+                }
+        '404':
+          description: UID not found
+          content:
+            application/json:
+              example:
+                {
+                  "status": "error",
+                  "message": "Tidak ada data"
+                }
+    delete:
+      security:
+        - AuthToken: []
+      tags: 
+        - Alumni
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          schema:
+            type: string
+          description: UID
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "Tentang Kami berhasil dihapus"
+                }
+        '404':
+          description: UID not found
+          content:
+            application/json:
+              example:
+                {
+                  "status": "error",
+                  "message": "Tidak ada data"
+                }
   /dashboard/active-member/:
     post:
       security:
@@ -1165,6 +1308,30 @@ components:
           type: string
           example: Riset
         tahunAngkatan:
+          type: string
+          example: 2020
+        imageUrl:
+          type: string
+          format: binary
+    alumni:
+      type: object
+      properties:
+        nama:
+          type: string
+          example: Naoval Annasik
+        tahunAngkatan:
+          type: string
+          example: Anggota
+        judulTA:
+          type: string
+          example: Riset
+        profesi:
+          type: string
+          example: 2020
+        qupte:
+          type: string
+          example: 2020
+        asalLab:
           type: string
           example: 2020
         imageUrl:
