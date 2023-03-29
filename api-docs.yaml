@@ -24,6 +24,7 @@ paths:
     post:
       security:
         - AuthToken: []
+      summary: Input data alumni baru
       tags: 
         - Alumni
       requestBody:
@@ -58,6 +59,7 @@ paths:
     get:
       security:
         - AuthToken: []
+      summary: Daftar data alumni
       tags: 
         - Alumni
       responses:
@@ -98,6 +100,7 @@ paths:
     put:
       security:
         - AuthToken: []
+      summary: Ubah data alumni berdasarkan UID
       tags: 
         - Alumni
       parameters:
@@ -137,6 +140,7 @@ paths:
         - AuthToken: []
       tags: 
         - Alumni
+      summary: Hapus data alumni berdasarkan UID
       parameters:
         - in: path
           name: uid
@@ -169,6 +173,7 @@ paths:
         - AuthToken: []
       tags: 
         - Active Member
+      summary: Input data anggota aktif
       requestBody:
         required: true
         content:
@@ -201,6 +206,7 @@ paths:
     get:
       security:
         - AuthToken: []
+      summary: Daftar data anggota aktif
       tags: 
         - Active Member
       responses:
@@ -241,6 +247,7 @@ paths:
     put:
       security:
         - AuthToken: []
+      summary: Ubah data anggota aktif berdasarkan UID
       tags: 
         - Active Member
       parameters:
@@ -278,6 +285,7 @@ paths:
     delete:
       security:
         - AuthToken: []
+      summary: Hapus data anggota aktif berdasarkan UID
       tags: 
         - Active Member
       parameters:
@@ -312,7 +320,7 @@ paths:
         - AuthToken: []
       tags: 
         - Landing Page
-      summary: Landing Page Tentang Kami
+      summary: Input data "Tentang Kami"
       requestBody:
         required: true
         content:
@@ -344,7 +352,7 @@ paths:
         - AuthToken: []
       tags: 
         - Landing Page
-      summary: Landing Page Tentang Kami
+      summary: Daftar data "Tentang Kami"
       responses:
         '200':
           description: Success
@@ -368,7 +376,7 @@ paths:
     put:
       tags: 
         - Landing Page
-      summary: Perbarui Data Berdasarkan ID
+      summary: Perbarui Data Berdasarkan UID
       security:
         - AuthToken: []
       requestBody:
@@ -406,7 +414,7 @@ paths:
     delete:
       tags: 
         - Landing Page
-      summary: Hapus data berdasarkan ID
+      summary: Hapus data berdasarkan UID
       security:
         - AuthToken: []
       parameters:
@@ -439,7 +447,7 @@ paths:
     post:
       tags: 
         - Landing Page
-      summary: Landing Page Sejarah Lab
+      summary: Input data Tentang Sejarah Lab
       security:
         - AuthToken: []
       requestBody:
@@ -472,7 +480,7 @@ paths:
     get:
       tags: 
         - Landing Page
-      summary: Landing Page Sejarah Lab
+      summary: Daftar data tentang sejarah Lab
       security:
         - AuthToken: []
       responses:
@@ -499,7 +507,7 @@ paths:
     put:
       tags: 
         - Landing Page
-      summary: Perbarui Data Berdasarkan ID
+      summary: Perbarui Data Berdasarkan UID
       security:
         - AuthToken: []
       parameters:
@@ -548,7 +556,7 @@ paths:
     delete:
       tags: 
         - Landing Page
-      summary: Hapus data berdasarkan ID
+      summary: Hapus data berdasarkan UID
       security:
         - AuthToken: []
       parameters:
@@ -581,7 +589,7 @@ paths:
     post:
       tags: 
         - Landing Page
-      summary: Landing Page Struktur Organisasi
+      summary: Input data struktur organisasi
       security:
         - AuthToken: []
       requestBody:
@@ -613,7 +621,7 @@ paths:
     get:
       tags: 
         - Landing Page
-      summary: Landing Page Struktur Organisasi
+      summary: Daftar data struktur organisasi
       security:
         - AuthToken: []
       responses:
@@ -658,7 +666,7 @@ paths:
     get:
       tags: 
         - Landing Page
-      summary: List data berdasarkan ID
+      summary: List data berdasarkan UID
       parameters:
         - in: path
           name: uid
@@ -700,7 +708,7 @@ paths:
     put:
       tags: 
         - Landing Page
-      summary: Perbarui Data Berdasarkan ID
+      summary: Perbarui Data Berdasarkan UID
       security:
         - AuthToken: []
       parameters:
@@ -748,7 +756,7 @@ paths:
     delete:
       tags: 
         - Landing Page
-      summary: Hapus data berdasarkan ID
+      summary: Hapus data berdasarkan UID
       security:
         - AuthToken: []
       parameters:
@@ -783,7 +791,7 @@ paths:
     post:
       tags: 
         - Landing Page
-      summary: Landing Page Sambutan Pembina
+      summary: Input data sambutan pembina
       security:
         - AuthToken: []
       requestBody:
@@ -816,7 +824,7 @@ paths:
     get:
       tags: 
         - Landing Page
-      summary: Landing Page Sambutan Pembina
+      summary: Daftar data sambutan pembina
       security:
         - AuthToken: []
       responses:
