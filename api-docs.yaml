@@ -12,7 +12,7 @@ tags:
   - name: Landing Page
     description: Landing Page Editor
   - name: Active Member
-    description: Active Member Page (masih template)
+    description: Active Member Page 
   - name: Prestasi
     description: To Do Next
   - name: Alumni
@@ -42,17 +42,19 @@ paths:
                   "status": "success",
                   "message": "Tentang Kami berhasil ditambahkan",
                   "data": {
-                    "uid": "6a99ef60-8282-40f5-9294-2f3dc3c9e979",
-                    "judul": "Tentang Kami",
-                    "isi": "Lorem Ipsum Dolor",
+                    "uid": "3cebde8f-9a07-4408-b8b7-8d4315d3bda9",
+                    "nama": "Naoval Annasik",
+                    "jabatan": "Anggota",
+                    "divisi": "Riset",
+                    "tahunAngkatan": "2020",
+                    "imageUrl": "s3.adaptivenetworklab.org/website/Active-Member-Anggota.Naoval Annasik.Upload-At-2023-03-29.jpg",
                     "updateAt": null,
-                    "createdAt": "2023-03-24T22:11:41.147Z"
+                    "_id": "6424689f7a45fb8c4031acc3",
+                    "createdAt": "2023-03-29T16:34:39.298Z"
                   }
                 }
         '400':
-          $ref: '#/components/responses/Unauthorized'
-        '500':
-          description: test123
+          description: Invalid Token
     get:
       security:
         - AuthToken: []
@@ -67,34 +69,100 @@ paths:
                 {
                   "status": "success",
                   "message": "Tentang Kami berhasil ditampilkan",
-                  "data": {
-                    "uid": "6a99ef60-8282-40f5-9294-2f3dc3c9e979",
-                    "judul": "Tentang Kami",
-                    "isi": "Lorem Ipsum Dolor",
+                  "data": [
+                  {
+                    "uid": "6209896e-5309-464d-82ed-56bd37661fb7",
+                    "nama": "Naoval Annasik",
+                    "jabatan": "Anggota",
+                    "divisi": "Alumni",
+                    "tahunAngkatan": "2020",
+                    "imageUrl": "s3.adaptivenetworklab.org/website/Active-Member-Anggota.Naoval Annasik.Upload-At-2023-03-29.jpg",
                     "updateAt": null,
-                    "createdAt": "2023-03-24T22:11:41.147Z"
+                    "createdAt": "2023-03-29T08:26:42.191Z"
+                  },
+                  {
+                    "uid": "3cebde8f-9a07-4408-b8b7-8d4315d3bda9",
+                    "nama": "Gilang Virga Perdana",
+                    "jabatan": "Kepala Divisi",
+                    "divisi": "Riset",
+                    "tahunAngkatan": "2020",
+                    "imageUrl": "s3.adaptivenetworklab.org/website/Active-Member-Anggota.Gilang Virga Perdana.Upload-At-2023-03-29.jpg",
+                    "updateAt": null,
+                    "createdAt": "2023-03-29T16:34:39.298Z"
                   }
+                ]
                 }
         '400':
-          $ref: '#/components/responses/Unauthorized'
-        '500':
-          description: test123
+          description: Invalid Token
   /dashboard/active-member/{uid}:
-    get:
-      security:
-        - AuthToken: []
-      tags: 
-        - Active Member
     put:
       security:
         - AuthToken: []
       tags: 
         - Active Member
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          schema:
+            type: string
+          description: UID
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/activemember'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "Tentang Kami berhasil diubah"
+                }
+        '404':
+          description: UID not found
+          content:
+            application/json:
+              example:
+                {
+                  "status": "error",
+                  "message": "Tidak ada data"
+                }
     delete:
       security:
         - AuthToken: []
       tags: 
         - Active Member
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          schema:
+            type: string
+          description: UID
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "Tentang Kami berhasil dihapus"
+                }
+        '404':
+          description: UID not found
+          content:
+            application/json:
+              example:
+                {
+                  "status": "error",
+                  "message": "Tidak ada data"
+                }
   /dashboard/landing-page-editor/tentang-kami:
     post:
       security:
@@ -153,8 +221,6 @@ paths:
                 }
         '400':
           $ref: '#/components/responses/Unauthorized'
-        '500':
-          description: test123
   /dashboard/landing-page-editor/tentang-kami/{uid}:
     put:
       tags: 
@@ -191,7 +257,7 @@ paths:
             application/json:
               example:
                 {
-                  "status": "success",
+                  "status": "error",
                   "message": "Tentang Kami tidak ditemukan"
                 }
     delete:
@@ -223,7 +289,7 @@ paths:
             application/json:
               example:
                 {
-                  "status": "success",
+                  "status": "error",
                   "message": "Tentang Kami tidak ditemukan"
                 }
   /dashboard/landing-page-editor/tentang-kami-sejarah:
