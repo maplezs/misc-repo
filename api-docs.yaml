@@ -95,6 +95,15 @@ paths:
                 }
         '400':
           description: Invalid Token
+        '404':
+          description: UID not found
+          content:
+            application/json:
+              example:
+                {
+                  "status": "error",
+                  "message": "Tidak ada data"
+                }
   /dashboard/alumni/{uid}:
     get:
       security:
