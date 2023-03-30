@@ -43,15 +43,20 @@ paths:
                   "status": "success",
                   "message": "Tentang Kami berhasil ditambahkan",
                   "data": {
-                    "uid": "3cebde8f-9a07-4408-b8b7-8d4315d3bda9",
+                    "uid": "40a75079-8386-4554-9285-f084bd792a7b",
                     "nama": "Naoval Annasik",
-                    "jabatan": "Anggota",
-                    "divisi": "Riset",
-                    "tahunAngkatan": "2020",
-                    "imageUrl": "s3.adaptivenetworklab.org/website/Active-Member-Anggota.Naoval Annasik.Upload-At-2023-03-29.jpg",
+                    "tahunAngkatan": "2019",
+                    "judulTA": "Pengalaman saya di Program Bangkit 2022 dan Saat menjadi anak magang di paragon corp",
+                    "profesi": "Masih jadi Anak Magang",
+                    "quote": "Adaptive joss",
+                    "asalLab": "Adaptive Network Laboratory",
+                    "imageUrl": "s3.adaptivenetworklab.org:9000/website/Alumni-Adaptive Network Laboratory.Naoval Annasik.Upload-At-2023-03-30.jpg",
+                    "instagram": "instagram.com/adaptivenetlab",
+                    "linkedIn": "linkedin.com/in/annasik",
+                    "email": "annasiknvl@example.com",
                     "updateAt": null,
-                    "_id": "6424689f7a45fb8c4031acc3",
-                    "createdAt": "2023-03-29T16:34:39.298Z"
+                    "_id": "6426032218b7e32aa3a0adb8",
+                    "createdAt": "2023-03-30T21:46:10.715Z"
                   }
                 }
         '400':
@@ -71,32 +76,67 @@ paths:
                 {
                   "status": "success",
                   "message": "Tentang Kami berhasil ditampilkan",
-                  "data": [
+                  "data": 
                   {
-                    "uid": "6209896e-5309-464d-82ed-56bd37661fb7",
+                    "uid": "40a75079-8386-4554-9285-f084bd792a7b",
                     "nama": "Naoval Annasik",
-                    "jabatan": "Anggota",
-                    "divisi": "Alumni",
-                    "tahunAngkatan": "2020",
-                    "imageUrl": "s3.adaptivenetworklab.org/website/Active-Member-Anggota.Naoval Annasik.Upload-At-2023-03-29.jpg",
+                    "tahunAngkatan": "2019",
+                    "judulTA": "Pengalaman saya di Program Bangkit 2022 dan Saat menjadi anak magang di paragon corp",
+                    "profesi": "Masih jadi Anak Magang",
+                    "quote": "Adaptive joss",
+                    "asalLab": "Adaptive Network Laboratory",
+                    "imageUrl": "s3.adaptivenetworklab.org:9000/website/Alumni-Adaptive Network Laboratory.Naoval Annasik.Upload-At-2023-03-30.jpg",
+                    "instagram": "instagram.com/adaptivenetlab",
+                    "linkedIn": "linkedin.com/in/annasik",
+                    "email": "annasiknvl@example.com",
                     "updateAt": null,
-                    "createdAt": "2023-03-29T08:26:42.191Z"
-                  },
-                  {
-                    "uid": "3cebde8f-9a07-4408-b8b7-8d4315d3bda9",
-                    "nama": "Gilang Virga Perdana",
-                    "jabatan": "Kepala Divisi",
-                    "divisi": "Riset",
-                    "tahunAngkatan": "2020",
-                    "imageUrl": "s3.adaptivenetworklab.org/website/Active-Member-Anggota.Gilang Virga Perdana.Upload-At-2023-03-29.jpg",
-                    "updateAt": null,
-                    "createdAt": "2023-03-29T16:34:39.298Z"
+                    "createdAt": "2023-03-30T21:46:10.715Z"
                   }
-                ]
                 }
         '400':
           description: Invalid Token
   /dashboard/alumni/{uid}:
+    get:
+      security:
+        - AuthToken: []
+      summary: Tampilkan data alumni berdasarkan UID
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          schema:
+            type: string
+          description: UID
+      tags: 
+        - Alumni
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "Tentang Kami berhasil ditampilkan",
+                  "data":
+                  {
+                   "uid": "40a75079-8386-4554-9285-f084bd792a7b",
+                    "nama": "Naoval Annasik",
+                    "tahunAngkatan": "2019",
+                    "judulTA": "Pengalaman saya di Program Bangkit 2022 dan Saat menjadi anak magang di paragon corp",
+                    "profesi": "Masih jadi Anak Magang",
+                    "quote": "Adaptive joss",
+                    "asalLab": "Adaptive Network Laboratory",
+                    "imageUrl": "s3.adaptivenetworklab.org:9000/website/Alumni-Adaptive Network Laboratory.Naoval Annasik.Upload-At-2023-03-30.jpg",
+                    "instagram": "instagram.com/adaptivenetlab",
+                    "linkedIn": "linkedin.com/in/annasik",
+                    "email": "annasiknvl@example.com",
+                    "updateAt": null,
+                    "createdAt": "2023-03-30T21:46:10.715Z"
+                  }
+                }
+        '400':
+          description: Invalid Token
     put:
       security:
         - AuthToken: []
@@ -224,8 +264,11 @@ paths:
                     "nama": "Naoval Annasik",
                     "jabatan": "Anggota",
                     "divisi": "Alumni",
-                    "tahunAngkatan": "2020",
+                    "tahunAngkatan": "2019",
                     "imageUrl": "s3.adaptivenetworklab.org/website/Active-Member-Anggota.Naoval Annasik.Upload-At-2023-03-29.jpg",
+                    "instagram": "instagram.com/adaptivenetlab",
+                    "linkedIn": "linkedin.com/in/annasik",
+                    "email": "annasiknvl@example.com",
                     "updateAt": null,
                     "createdAt": "2023-03-29T08:26:42.191Z"
                   },
@@ -234,8 +277,11 @@ paths:
                     "nama": "Gilang Virga Perdana",
                     "jabatan": "Kepala Divisi",
                     "divisi": "Riset",
-                    "tahunAngkatan": "2020",
+                    "tahunAngkatan": "2019",
                     "imageUrl": "s3.adaptivenetworklab.org/website/Active-Member-Anggota.Gilang Virga Perdana.Upload-At-2023-03-29.jpg",
+                    "instagram": "instagram.com/adaptivenetlab",
+                    "linkedIn": "linkedin.com/in/gilangvperdana",
+                    "email": "gilangvperdana@example.com",
                     "updateAt": null,
                     "createdAt": "2023-03-29T16:34:39.298Z"
                   }
@@ -244,6 +290,49 @@ paths:
         '400':
           description: Invalid Token
   /dashboard/active-member/{uid}:
+    get:
+      summary: Data anggota aktif berdasarkan UID
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          schema:
+            type: string
+          description: UID
+      tags: 
+        - Active Member
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "Tentang Kami berhasil ditampilkan",
+                  "data":
+                  {
+                    "uid": "6209896e-5309-464d-82ed-56bd37661fb7",
+                    "nama": "Naoval Annasik",
+                    "jabatan": "Anggota",
+                    "divisi": "Alumni",
+                    "tahunAngkatan": "2020",
+                    "imageUrl": "s3.adaptivenetworklab.org/website/Active-Member-Anggota.Naoval Annasik.Upload-At-2023-03-29.jpg",
+                    "updateAt": null,
+                    "createdAt": "2023-03-29T08:26:42.191Z"
+                  }
+                }
+        '400':
+          description: Invalid Token
+        '404':
+          description: UID not found
+          content:
+            application/json:
+              example:
+                {
+                  "status": "error",
+                  "message": "Tidak ada data"
+                }
     put:
       security:
         - AuthToken: []
@@ -1323,7 +1412,7 @@ components:
           format: binary
         instagram:
           type: string
-          example: @instagram
+          example: instagram.com/adaptivenetlab
         linkedIn:
           type: string
           example: linkedin.com/in/annasik
@@ -1338,22 +1427,31 @@ components:
           example: Naoval Annasik
         tahunAngkatan:
           type: string
-          example: Anggota
+          example: 2019
         judulTA:
           type: string
-          example: Riset
+          example: Pengalaman saya di Program Bangkit 2022 dan Saat menjadi anak magang di paragon corp
         profesi:
           type: string
-          example: 2020
+          example: Masih jadi Anak Magang
         quote:
           type: string
-          example: 2020
+          example: Adaptive joss
         asalLab:
           type: string
-          example: 2020
+          example: Adaptive Network Laboratory
         imageUrl:
           type: string
           format: binary
+        instagram:
+          type: string
+          example: instagram.com/adaptivenetlab
+        linkedIn:
+          type: string
+          example: linkedin.com/in/annasik
+        email:
+          type: string
+          example: annasiknvl@example.com
   securitySchemes:
     AuthToken:
       type: apiKey
