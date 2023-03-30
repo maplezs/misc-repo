@@ -1321,6 +1321,15 @@ components:
         imageUrl:
           type: string
           format: binary
+        instagram:
+          type: string
+          example: @instagram
+        linkedIn:
+          type: string
+          example: linkedin.com/in/annasik
+        email:
+          type: string
+          example: annasiknvl@example.com
     alumni:
       type: object
       properties:
