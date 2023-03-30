@@ -1336,7 +1336,7 @@ components:
         profesi:
           type: string
           example: 2020
-        qupte:
+        quote:
           type: string
           example: 2020
         asalLab:
