@@ -4,7 +4,7 @@ info:
   description: |-
     Dokumentasi lengkap mengenai semua API yang ada
     
-    Lakukan login terlebih dahulu (daftar jika belum memiliki akun) untuk mendapatkan auth-token, lalu input pada menu Authorize 
+    Lakukan login terlebih dahulu untuk mendapatkan token, copy token lalu paste pada menu Authorize 
   version: 1.0.1
 servers:
   - url: https://api.adaptivenetlab.site/v1
