@@ -15,11 +15,399 @@ tags:
     description: Active Member Page 
   - name: Alumni
     description: Alumni Page
+  - name: Kegiatan
+    description: Kegiatan Lab Page
+  - name: Sertifikat
+    description: Page Sertifikat (Masih Template)
   - name: Prestasi
     description: To Do Next
-  - name: Kegiatan
-    description: To Do Next
 paths:
+  /dashboard/sertifikat/:
+    post:
+      security:
+        - AuthToken: []
+      summary: Input data sertifikat
+      tags: 
+        - Sertifikat
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/kegiatan'
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "Kegiatan berhasil ditambahkann",
+                  "data": {
+                    "uid": "4d3583e4-2f80-4b1f-b357-8813ed5da228",
+                    "judul": "Judul utama",
+                    "subJudul": "Sub Judul",
+                    "isi": "Isi dari kegiatan",
+                    "divisi": "Riset",
+                    "imageUrl": "s3.adaptivenetworklab.org:9000/website/Kegiatan-Judul utama-Riset.Upload-At-2023-04-09.jpg",
+                    "updateAt": null,
+                    "_id": "6432ea01bee853f20b8c0c2a",
+                    "createdAt": "2023-04-09T16:38:25.124Z"
+                  }
+                }
+        '400':
+          description: Invalid Token
+    get:
+      summary: Daftar data sertifikat
+      tags: 
+        - Sertifikat
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "kegiatan berhasil ditampilkan",
+                  "data": [
+                    {
+                      "uid": "4d3583e4-2f80-4b1f-b357-8813ed5da228",
+                      "judul": "Judul utama",
+                      "subJudul": "Sub Judul",
+                      "isi": "Isi dari kegiatan",
+                      "divisi": "Riset",
+                      "imageUrl": "s3.adaptivenetworklab.org:9000/website/Kegiatan-Judul utama-Riset.Upload-At-2023-04-09.jpg",
+                      "updateAt": null,
+                      "createdAt": "2023-04-09T16:38:25.124Z"
+                    },
+                    {
+                      "uid": "8d5feead-b0b1-4f68-acb3-b57bb0f31993",
+                      "judul": "Judul utama 2",
+                      "subJudul": "Sub Judul 2",
+                      "isi": "Isi dari kegiatan 2",
+                      "divisi": "Riset",
+                      "imageUrl": "s3.adaptivenetworklab.org:9000/website/Kegiatan-Judul utama 2-Riset.Upload-At-2023-04-09.jpg",
+                      "updateAt": null,
+                      "createdAt": "2023-04-09T16:39:40.781Z"
+                    }
+                  ]
+                }
+        '400':
+          description: Invalid Token
+        '404':
+          description: UID not found
+          content:
+            application/json:
+              example:
+                {
+                  "status": "error",
+                  "message": "Tidak ada data"
+                }
+  /dashboard/sertifikat/{uid}:
+    get:
+      summary: Tampilkan data Sertifikat berdasarkan UID
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          schema:
+            type: string
+          description: UID
+      tags: 
+        - Sertifikat
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "Tentang Kami berhasil ditampilkan",
+                  "data":
+                  {
+                   "uid": "40a75079-8386-4554-9285-f084bd792a7b",
+                    "nama": "Naoval Annasik",
+                    "tahunAngkatan": "2019",
+                    "judulTA": "Pengalaman saya di Program Bangkit 2022 dan Saat menjadi anak magang di paragon corp",
+                    "profesi": "Masih jadi Anak Magang",
+                    "quote": "Adaptive joss",
+                    "asalLab": "Adaptive Network Laboratory",
+                    "imageUrl": "s3.adaptivenetworklab.org:9000/website/Alumni-Adaptive Network Laboratory.Naoval Annasik.Upload-At-2023-03-30.jpg",
+                    "instagram": "instagram.com/adaptivenetlab",
+                    "linkedIn": "linkedin.com/in/annasik",
+                    "email": "annasiknvl@example.com",
+                    "updateAt": null,
+                    "createdAt": "2023-03-30T21:46:10.715Z"
+                  }
+                }
+        '400':
+          description: Invalid Token
+    put:
+      security:
+        - AuthToken: []
+      summary: Ubah data Sertifikat berdasarkan UID
+      tags: 
+        - Sertifikat
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          schema:
+            type: string
+          description: UID
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/kegiatan'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "Kegiatan berhasil diubah"
+                }
+        '404':
+          description: UID not found
+          content:
+            application/json:
+              example:
+                {
+                  "status": "error",
+                  "message": "Tidak ada data"
+                }
+    delete:
+      security:
+        - AuthToken: []
+      tags: 
+        - Sertifikat
+      summary: Hapus data Sertifikat berdasarkan UID
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          schema:
+            type: string
+          description: UID
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "Kegiatan berhasil dihapus"
+                }
+        '404':
+          description: UID not found
+          content:
+            application/json:
+              example:
+                {
+                  "status": "error",
+                  "message": "Tidak ada data"
+                }
+  /dashboard/kegiatan/:
+    post:
+      security:
+        - AuthToken: []
+      summary: Input data kegiatan
+      tags: 
+        - Kegiatan
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/kegiatan'
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "Kegiatan berhasil ditambahkann",
+                  "data": {
+                    "uid": "4d3583e4-2f80-4b1f-b357-8813ed5da228",
+                    "judul": "Judul utama",
+                    "subJudul": "Sub Judul",
+                    "isi": "Isi dari kegiatan",
+                    "divisi": "Riset",
+                    "imageUrl": "s3.adaptivenetworklab.org:9000/website/Kegiatan-Judul utama-Riset.Upload-At-2023-04-09.jpg",
+                    "updateAt": null,
+                    "_id": "6432ea01bee853f20b8c0c2a",
+                    "createdAt": "2023-04-09T16:38:25.124Z"
+                  }
+                }
+        '400':
+          description: Invalid Token
+    get:
+      summary: Daftar data alumni
+      tags: 
+        - Kegiatan
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "kegiatan berhasil ditampilkan",
+                  "data": [
+                    {
+                      "uid": "4d3583e4-2f80-4b1f-b357-8813ed5da228",
+                      "judul": "Judul utama",
+                      "subJudul": "Sub Judul",
+                      "isi": "Isi dari kegiatan",
+                      "divisi": "Riset",
+                      "imageUrl": "s3.adaptivenetworklab.org:9000/website/Kegiatan-Judul utama-Riset.Upload-At-2023-04-09.jpg",
+                      "updateAt": null,
+                      "createdAt": "2023-04-09T16:38:25.124Z"
+                    },
+                    {
+                      "uid": "8d5feead-b0b1-4f68-acb3-b57bb0f31993",
+                      "judul": "Judul utama 2",
+                      "subJudul": "Sub Judul 2",
+                      "isi": "Isi dari kegiatan 2",
+                      "divisi": "Riset",
+                      "imageUrl": "s3.adaptivenetworklab.org:9000/website/Kegiatan-Judul utama 2-Riset.Upload-At-2023-04-09.jpg",
+                      "updateAt": null,
+                      "createdAt": "2023-04-09T16:39:40.781Z"
+                    }
+                  ]
+                }
+        '400':
+          description: Invalid Token
+        '404':
+          description: UID not found
+          content:
+            application/json:
+              example:
+                {
+                  "status": "error",
+                  "message": "Tidak ada data"
+                }
+  /dashboard/kegiatan/{uid}:
+    get:
+      summary: Tampilkan data kegiatan berdasarkan UID
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          schema:
+            type: string
+          description: UID
+      tags: 
+        - Kegiatan
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "Tentang Kami berhasil ditampilkan",
+                  "data":
+                  {
+                   "uid": "40a75079-8386-4554-9285-f084bd792a7b",
+                    "nama": "Naoval Annasik",
+                    "tahunAngkatan": "2019",
+                    "judulTA": "Pengalaman saya di Program Bangkit 2022 dan Saat menjadi anak magang di paragon corp",
+                    "profesi": "Masih jadi Anak Magang",
+                    "quote": "Adaptive joss",
+                    "asalLab": "Adaptive Network Laboratory",
+                    "imageUrl": "s3.adaptivenetworklab.org:9000/website/Alumni-Adaptive Network Laboratory.Naoval Annasik.Upload-At-2023-03-30.jpg",
+                    "instagram": "instagram.com/adaptivenetlab",
+                    "linkedIn": "linkedin.com/in/annasik",
+                    "email": "annasiknvl@example.com",
+                    "updateAt": null,
+                    "createdAt": "2023-03-30T21:46:10.715Z"
+                  }
+                }
+        '400':
+          description: Invalid Token
+    put:
+      security:
+        - AuthToken: []
+      summary: Ubah data kegiatan berdasarkan UID
+      tags: 
+        - Kegiatan
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          schema:
+            type: string
+          description: UID
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/kegiatan'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "Kegiatan berhasil diubah"
+                }
+        '404':
+          description: UID not found
+          content:
+            application/json:
+              example:
+                {
+                  "status": "error",
+                  "message": "Tidak ada data"
+                }
+    delete:
+      security:
+        - AuthToken: []
+      tags: 
+        - Kegiatan
+      summary: Hapus data kegiatan berdasarkan UID
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          schema:
+            type: string
+          description: UID
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                {
+                  "status": "success",
+                  "message": "Kegiatan berhasil dihapus"
+                }
+        '404':
+          description: UID not found
+          content:
+            application/json:
+              example:
+                {
+                  "status": "error",
+                  "message": "Tidak ada data"
+                }
   /dashboard/alumni/:
     post:
       security:
@@ -1461,6 +1849,24 @@ components:
         email:
           type: string
           example: annasiknvl@example.com
+    kegiatan:
+      type: object
+      properties:
+        judul:
+          type: string
+          example: Judul utama
+        subJudul:
+          type: string
+          example: Sub Judul
+        isi:
+          type: string
+          example: Isi dari kegiatan
+        divisi:
+          type: string
+          example: Riset
+        imageUrl:
+          type: string
+          format: binary
   securitySchemes:
     AuthToken:
       type: apiKey
