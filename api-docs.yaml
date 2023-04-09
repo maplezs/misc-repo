@@ -3,6 +3,7 @@ info:
   title: Adaptive Network Lab API
   description: |-
     Dokumentasi lengkap mengenai semua API yang ada
+    Lakukan login terlebih dahulu (daftar jika belum memiliki akun) untuk mendapatkan auth-token, lalu input pada menu Authorize 
   version: 1.0.1
 servers:
   - url: https://api.adaptivenetlab.site/v1
