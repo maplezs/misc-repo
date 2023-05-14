@@ -23,7 +23,7 @@ int myBPM;
 // setup sebelum program utama mulai
 void setup() {
   Serial.begin(115200);
-
+  pinMode(interruptPin, INPUT_PULLUP);
   // Insialisasi layar OLED
   if(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
     Serial.println(F("Alokasi gagal!"));
@@ -33,11 +33,13 @@ void setup() {
     pulseSensor.blinkOnPulse(LED);    
     pulseSensor.setThreshold(Threshold);
   if (pulseSensor.begin()) {
-    Serial.println("We created a pulseSensor Object !");  //This prints one time at Arduino power-up,  or on Arduino reset.  
+    Serial.println("We created a pulseSensor Object !");
   }
     display.setTextSize(1);
     display.setTextColor(WHITE);
+    display.setCursor(0,0);
     display.println("Selamat Datang");
+    display.setCursor(0,1);
     display.println("to Kuliah");
     display.display();
     delay(2000); 
@@ -74,7 +76,9 @@ void loop() {
             if(millis()-waktuterakhir < 60000){
                 myBPM = pulseSensor.getBeatsPerMinute();
                 if(myBPM < 110 || myBPM > 160){
-                    // buzzer berbunyi
+                    tone(9, 1000);
+                    delay(250);
+                    noTone(9);
                 }
             }
             display.clearDisplay();
