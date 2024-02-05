@@ -1,0 +1,130 @@
+import sys
+from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
+from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
+    QCursor, QFont, QFontDatabase, QGradient,
+    QIcon, QImage, QKeySequence, QLinearGradient,
+    QPainter, QPalette, QPixmap, QRadialGradient,
+    QTransform)
+from PySide6.QtWidgets import (QApplication, QComboBox, QGroupBox, QLabel,
+    QLineEdit, QMainWindow, QMenu, QMenuBar,
+    QSizePolicy, QStatusBar, QWidget)
+
+class Ui_MainWindow(object):
+    def __init__(self):
+        pass
+    def setupUi(self, MainWindow):
+        if not MainWindow.objectName():
+            MainWindow.setObjectName(u"MainWindow")
+        MainWindow.resize(671, 392)
+        self.actionQuit = QAction(MainWindow)
+        self.actionQuit.setObjectName(u"actionQuit")
+        self.actionHow_to_use = QAction(MainWindow)
+        self.actionHow_to_use.setObjectName(u"actionHow_to_use")
+        self.actionHelp = QAction(MainWindow)
+        self.actionHelp.setObjectName(u"actionHelp")
+        self.centralwidget = QWidget(MainWindow)
+        self.centralwidget.setObjectName(u"centralwidget")
+        self.lineEdit = QLineEdit(self.centralwidget)
+        self.lineEdit.setObjectName(u"lineEdit")
+        self.lineEdit.setGeometry(QRect(70, 50, 31, 22))
+        self.lineEdit_2 = QLineEdit(self.centralwidget)
+        self.lineEdit_2.setObjectName(u"lineEdit_2")
+        self.lineEdit_2.setGeometry(QRect(110, 50, 31, 22))
+        self.lineEdit_3 = QLineEdit(self.centralwidget)
+        self.lineEdit_3.setObjectName(u"lineEdit_3")
+        self.lineEdit_3.setGeometry(QRect(150, 50, 31, 22))
+        self.lineEdit_4 = QLineEdit(self.centralwidget)
+        self.lineEdit_4.setObjectName(u"lineEdit_4")
+        self.lineEdit_4.setGeometry(QRect(70, 80, 31, 22))
+        self.lineEdit_5 = QLineEdit(self.centralwidget)
+        self.lineEdit_5.setObjectName(u"lineEdit_5")
+        self.lineEdit_5.setGeometry(QRect(110, 80, 31, 22))
+        self.lineEdit_6 = QLineEdit(self.centralwidget)
+        self.lineEdit_6.setObjectName(u"lineEdit_6")
+        self.lineEdit_6.setGeometry(QRect(150, 80, 31, 22))
+        self.lineEdit_7 = QLineEdit(self.centralwidget)
+        self.lineEdit_7.setObjectName(u"lineEdit_7")
+        self.lineEdit_7.setGeometry(QRect(70, 110, 31, 22))
+        self.lineEdit_8 = QLineEdit(self.centralwidget)
+        self.lineEdit_8.setObjectName(u"lineEdit_8")
+        self.lineEdit_8.setGeometry(QRect(110, 110, 31, 22))
+        self.lineEdit_9 = QLineEdit(self.centralwidget)
+        self.lineEdit_9.setObjectName(u"lineEdit_9")
+        self.lineEdit_9.setGeometry(QRect(150, 110, 31, 22))
+        self.lineEdit_10 = QLineEdit(self.centralwidget)
+        self.lineEdit_10.setObjectName(u"lineEdit_10")
+        self.lineEdit_10.setGeometry(QRect(70, 160, 111, 22))
+        self.groupBox = QGroupBox(self.centralwidget)
+        self.groupBox.setObjectName(u"groupBox")
+        self.groupBox.setGeometry(QRect(30, 10, 201, 191))
+        self.label_2 = QLabel(self.groupBox)
+        self.label_2.setObjectName(u"label_2")
+        self.label_2.setGeometry(QRect(20, 150, 21, 16))
+        self.label = QLabel(self.groupBox)
+        self.label.setObjectName(u"label")
+        self.label.setGeometry(QRect(10, 40, 21, 16))
+        self.label_3 = QLabel(self.centralwidget)
+        self.label_3.setObjectName(u"label_3")
+        self.label_3.setGeometry(QRect(90, 210, 58, 15))
+        self.comboBox = QComboBox(self.centralwidget)
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.setObjectName(u"comboBox")
+        self.comboBox.setGeometry(QRect(70, 230, 91, 23))
+        self.groupBox_2 = QGroupBox(self.centralwidget)
+        self.groupBox_2.setObjectName(u"groupBox_2")
+        self.groupBox_2.setGeometry(QRect(250, 10, 401, 331))
+        self.label_4 = QLabel(self.groupBox_2)
+        self.label_4.setObjectName(u"label_4")
+        self.label_4.setGeometry(QRect(10, 30, 58, 15))
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QMenuBar(MainWindow)
+        self.menubar.setObjectName(u"menubar")
+        self.menubar.setGeometry(QRect(0, 0, 671, 20))
+        self.menuFile = QMenu(self.menubar)
+        self.menuFile.setObjectName(u"menuFile")
+        self.menuHelp = QMenu(self.menubar)
+        self.menuHelp.setObjectName(u"menuHelp")
+        MainWindow.setMenuBar(self.menubar)
+        self.statusbar = QStatusBar(MainWindow)
+        self.statusbar.setObjectName(u"statusbar")
+        MainWindow.setStatusBar(self.statusbar)
+
+        self.menubar.addAction(self.menuFile.menuAction())
+        self.menubar.addAction(self.menuHelp.menuAction())
+        self.menuFile.addAction(self.actionQuit)
+        self.menuHelp.addAction(self.actionHow_to_use)
+        self.menuHelp.addAction(self.actionHelp)
+
+        self.retranslateUi(MainWindow)
+
+        QMetaObject.connectSlotsByName(MainWindow)
+    # setupUi
+
+    def retranslateUi(self, MainWindow):
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"LQR Control", None))
+        self.actionQuit.setText(QCoreApplication.translate("MainWindow", u"Quit", None))
+        self.actionHow_to_use.setText(QCoreApplication.translate("MainWindow", u"How to use", None))
+        self.actionHelp.setText(QCoreApplication.translate("MainWindow", u"About", None))
+        self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"Parameter Q dan R", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"R", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"Q", None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Set Point", None))
+        self.comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"Posisi 1", None))
+        self.comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"Posisi 2", None))
+        self.comboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"Posisi 3", None))
+
+        self.groupBox_2.setTitle(QCoreApplication.translate("MainWindow", u"Output sistem", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Nilai K", None))
+        self.menuFile.setTitle(QCoreApplication.translate("MainWindow", u"File", None))
+        self.menuHelp.setTitle(QCoreApplication.translate("MainWindow", u"Help", None))
+    # retranslateUi
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    windows = Ui_MainWindow(QMainWindow)
+    windows.show()
+    sys.exit(app.exec())
