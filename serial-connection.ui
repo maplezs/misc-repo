@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1057</width>
+    <width>727</width>
     <height>473</height>
    </rect>
   </property>
@@ -289,7 +289,31 @@
          <string>Nilai K</string>
         </property>
        </widget>
+       <widget class="PlotWidget" name="graphicsView">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>40</y>
+          <width>256</width>
+          <height>192</height>
+         </rect>
+        </property>
+       </widget>
       </widget>
+      <zorder>groupBox</zorder>
+      <zorder>lineEdit_7</zorder>
+      <zorder>comboBox_3</zorder>
+      <zorder>lineEdit</zorder>
+      <zorder>lineEdit_9</zorder>
+      <zorder>lineEdit_5</zorder>
+      <zorder>lineEdit_2</zorder>
+      <zorder>label_4</zorder>
+      <zorder>lineEdit_10</zorder>
+      <zorder>lineEdit_6</zorder>
+      <zorder>lineEdit_8</zorder>
+      <zorder>lineEdit_4</zorder>
+      <zorder>lineEdit_3</zorder>
+      <zorder>groupBox_2</zorder>
      </widget>
     </item>
    </layout>
@@ -299,7 +323,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1057</width>
+     <width>727</width>
      <height>22</height>
     </rect>
    </property>
@@ -336,6 +360,13 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PlotWidget</class>
+   <extends>QGraphicsView</extends>
+   <header>pyqtgraph</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections>
   <connection>
